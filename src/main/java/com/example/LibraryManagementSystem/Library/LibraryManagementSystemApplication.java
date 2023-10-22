@@ -1,5 +1,6 @@
 package com.example.LibraryManagementSystem.Library;
 
+import com.example.LibraryManagementSystem.Library.Entities.Author;
 import com.example.LibraryManagementSystem.Library.Entities.Book;
 import com.example.LibraryManagementSystem.Library.Entities.Issue;
 import com.example.LibraryManagementSystem.Library.Entities.Student;
