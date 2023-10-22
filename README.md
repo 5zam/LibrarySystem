@@ -10,6 +10,3 @@ The Library Management System is a Java-based web application designed to manage
 - Issue books to students, including tracking return dates.
 - List books issued to students by student USN (University Serial Number).
 - User-friendly console interface for interacting with the application.
-
-## License
-This project is licensed under group 5
