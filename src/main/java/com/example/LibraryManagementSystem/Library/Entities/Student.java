@@ -10,9 +10,35 @@ import lombok.Setter;
 
 import java.util.Objects;
 
-
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
 public class Student {
-    public static void main(String[] args) {
-        System.out.println("test");
+    @Id
+    private String usn;
+
+    private String studentName;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Student student = (Student) o;
+        return Objects.equals(usn, student.usn) && Objects.equals(studentName, student.studentName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(usn, studentName);
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "usn='" + usn + '\'' +
+                ", studentName='" + studentName + '\'' +
+                '}';
     }
 }
