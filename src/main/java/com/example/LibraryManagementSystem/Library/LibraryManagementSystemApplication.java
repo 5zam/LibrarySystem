@@ -229,10 +229,72 @@ public class LibraryManagementSystemApplication implements CommandLineRunner {
             }
         }
     }
+    private void handleSearchBookByTitle() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the title to search for: ");
+        String title = scanner.nextLine();
+
+        // Search books by title using bookRepository
+        List<Book> books = bookRepository.findByTitle(title);
+
+        if (books.isEmpty()) {
+            System.out.println("No books found with the given title.");
+        } else {
+            System.out.println("\nBooks with the title '" + title + "':");
+            System.out.println("----------------------------------------------------------------------------------------");
+            System.out.printf("%-20s %-20s %-15s %-15s%n", "Book ISBN", "Book Title", "Category", "No of Books");
+            System.out.println("----------------------------------------------------------------------------------------");
+            for (Book book : books) {
+                System.out.printf("%-20s %-20s %-15s %-15s%n", book.getIsbn(), book.getTitle(), book.getCategory(), book.getQuantity());
+            }
+            System.out.println("----------------------------------------------------------------------------------------");
+        }
+    }
 
 
+    private void handleAddBookAndAuthor() {
+        Scanner scanner = new Scanner(System.in);
 
-    //-------------------Nourah---------------
+        System.out.print("Enter ISBN: ");
+        String isbn = scanner.next();
+        System.out.print("Enter title: ");
+        String title = scanner.next();
+        System.out.print("Enter category: ");
+        String category = scanner.next();
+        System.out.print("Enter Author name: ");
+        String authorName = scanner.next();
+        System.out.print("Enter Author email: ");
+        String authorEmail = scanner.next();
+        System.out.print("Enter number of books: ");
+        int quantity = scanner.nextInt();
+
+        libraryServices.addBookAndAuthor(isbn, title, category, authorName, authorEmail, quantity);
+    }
+
+    //------------Nourah------------------
+    private void handleSearchBookByCategory() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter the category to search for: ");
+        String category = scanner.nextLine();
+
+        // Search books by category using bookRepository
+        List<Book> books = bookRepository.findByCategory(category);
+
+        if (books.isEmpty()) {
+            System.out.println("No books found in the given category.");
+        } else {
+            System.out.println("\nBooks in the category '" + category + "':");
+            System.out.println("----------------------------------------------------------------------------------------");
+            System.out.printf("%-20s %-20s %-15s %-15s%n", "Book ISBN", "Book Title", "Category", "No of Books");
+            System.out.println("----------------------------------------------------------------------------------------");
+            for (Book book : books) {
+                System.out.printf("%-20s %-20s %-15s %-15s%n", book.getIsbn(), book.getTitle(), book.getCategory(), book.getQuantity());
+            }
+            System.out.println("----------------------------------------------------------------------------------------");
+        }
+    }
+
+
     private void handleSearchBookByAuthor() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Enter the author's name to search for: ");
@@ -250,28 +312,6 @@ public class LibraryManagementSystemApplication implements CommandLineRunner {
             System.out.println("----------------------------------------------------------------------------------------");
             for (Author author : authors) {
                 Book book = author.getAuthorBook();
-                System.out.printf("%-20s %-20s %-15s %-15s%n", book.getIsbn(), book.getTitle(), book.getCategory(), book.getQuantity());
-            }
-            System.out.println("----------------------------------------------------------------------------------------");
-        }
-    }
-
-    private void handleSearchBookByCategory() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter the category to search for: ");
-        String category = scanner.nextLine();
-
-        // Search books by category using bookRepository
-        List<Book> books = bookRepository.findByCategory(category);
-
-        if (books.isEmpty()) {
-            System.out.println("No books found in the given category.");
-        } else {
-            System.out.println("\nBooks in the category '" + category + "':");
-            System.out.println("----------------------------------------------------------------------------------------");
-            System.out.printf("%-20s %-20s %-15s %-15s%n", "Book ISBN", "Book Title", "Category", "No of Books");
-            System.out.println("----------------------------------------------------------------------------------------");
-            for (Book book : books) {
                 System.out.printf("%-20s %-20s %-15s %-15s%n", book.getIsbn(), book.getTitle(), book.getCategory(), book.getQuantity());
             }
             System.out.println("----------------------------------------------------------------------------------------");
